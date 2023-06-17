@@ -1,0 +1,66 @@
+.AllNrjs {
+	height: 613px;
+	width: 258px;
+	background-color: transparent;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nrjCard {
+	width: 258px;
+	height: 124px;
+	border-radius: 5px;
+	background: var(--otherWhite);
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    display: flex;
+}
+.weightCal {
+    height: 50px;
+    width: auto;
+    margin-top: 19px;
+    margin-left: 24px;
+}
+.weightCalTitle {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	color: var(--tertiaryColor);
+    margin-bottom: 0;
+}
+
+.WeightCalText {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	color: var(--silver);
+    margin-top: 2px;
+}
+.backgroundIcons {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    margin: 32px 0 32px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.backgroundIcons1 {
+    background-color: rgba(255, 0, 0, 0.07);
+  }
+
+  .backgroundIcons2 {
+    background-color: rgba(74, 184, 255, 0.07);
+  }
+  
+  .backgroundIcons3 {
+    background-color: rgba(253, 204, 12, 0.07);
+  }
+  
+  .backgroundIcons4 {
+    background-color: rgba(253, 81, 129, 0.07);  
+  }
+
