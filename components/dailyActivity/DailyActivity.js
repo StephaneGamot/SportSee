@@ -19,7 +19,6 @@ function CustomTooltip({ payload, active }) {
 
 export default function DailyActivity({ userId }) {
 	let user = USER_ACTIVITY.find((user) => user.userId === userId);
-	console.log(user);
 	if (user) {
 		user = {
 			...user,
@@ -60,5 +59,4 @@ export default function DailyActivity({ userId }) {
 		</div>
 	);
 }
-// Impossible de changer backgroundcolor au survol
-// supprimer margin au premier et au dernier 
+
