@@ -11,7 +11,7 @@ class MyDocument extends Document {
 			<Html lang="fr">
 				<Head>
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
-					<link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicons/96x96.png" />
+					<link rel="icon" type="image/png" sizes="192x192" href="/assets/iconSportSee.png" />
 					<link rel="manifest" href="/manifest.json" />
 				</Head>
 				<body>

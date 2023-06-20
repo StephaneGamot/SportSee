@@ -6,13 +6,15 @@ import TrainingBoxes from "../components/training/TrainingBoxes";
 import Nrjs from "../components/nrj/Nrjs";
 
 export default function Home() {
+  const id = 18 ;
+
 	return (
 		<>
 			<div className={styles.main}>
-				<Title id={12} />
-				<DailyActivity className={styles.dailyActivity} userId={12} />
-				<Nrjs className={styles.nrjs} id={12}  />
-				<TrainingBoxes className={styles.trainingBoxes} userId={12} />
+				<Title id={id} /> 
+				<DailyActivity className={styles.dailyActivity} userId={id} />
+				<Nrjs className={styles.nrjs} id={id}  />
+				<TrainingBoxes className={styles.trainingBoxes} userId={id} />
 			</div>
 		</>
 	);

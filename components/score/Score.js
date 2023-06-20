@@ -50,7 +50,7 @@ export default function Score({ id }) {
             data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)
           }
         </RadialBar>
-        <circle cx="50%" cy="50%" r="94" fill="white" />  {/* Cercle intérieur orange */}
+        <circle cx="50%" cy="50%" r="94" fill="white" />  {/* Cercle intérieur blanc */}
 
 
         <text x='50%' y='50%' textAnchor="middle" dominantBaseline="middle" fill="#282D30">

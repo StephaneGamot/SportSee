@@ -20,7 +20,7 @@
 body {
 	margin: 0 auto;
 	position: absolute;
-	background: #e5e5e5;
+	background: white;
 	overflow-x: hidden;
 	height: 1024px;
 	font-family: 'Roboto', sans-serif;
@@ -61,4 +61,9 @@ a {
 }
 .light {
 	font-weight: 400;
+}
+@media (max-width: 1200px) { 
+	body {
+		width: 1024px;
+	}
 }

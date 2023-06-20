@@ -8,8 +8,8 @@ function CustomTooltip({ payload, active }) {
 	if (active && payload && payload.length) {
 		return (
 			<div className={styles.customTooltip}>
-				<p>{` ${payload[0].value} kg`}</p>    {/* Au survol (payload) la 1er info apprait dans mon tooltip */} 
-				<p>{`${payload[1].value} kcal`}</p>   {/* Au survol (payload) la 2nd info apprait dans mon tooltip */} 
+				<p>{`${payload[0].value} kg`}</p> {/* Au survol (payload) la 1er info apprait dans mon tooltip */}
+				<p>{`${payload[1].value} kcal`}</p> {/* Au survol (payload) la 2nd info apprait dans mon tooltip */}
 			</div>
 		);
 	}
@@ -17,14 +17,17 @@ function CustomTooltip({ payload, active }) {
 	return null;
 }
 
-export default function DailyActivity({ userId }) {
+export default function DailyActivity({ userId, sessions }) {
+	if (!userId) {
+		return <div>aucune activité pour cet utilisateur</div>;
+	}
 	let user = USER_ACTIVITY.find((user) => user.userId === userId);
 	if (user) {
 		user = {
 			...user,
 			sessions: user.sessions.map((session) => ({
 				...session,
-				day: session.day.substring(5), // Ou 8 selon la demande
+				day: session.day.substring(9),
 			})),
 		};
 	}
@@ -49,7 +52,7 @@ export default function DailyActivity({ userId }) {
 					<XAxis dataKey="day" axisLine={{ stroke: "#DEDEDE" }} tickLine={false} tick={{ fill: "#9B9EAC", dy: 15 }} className={styles.xaxis} />
 
 					<YAxis yAxisId="left" dataKey="calories" hide={true} />
-					<YAxis yAxisId="right" dataKey="kilogram" orientation="right" domain={["dataMin - 1", "dataMax + 1"]}  tickLine={false} axisLine={false} />
+					<YAxis yAxisId="right" dataKey="kilogram" orientation="right" domain={["dataMin - 1", "dataMax + 1"]} tickLine={false} axisLine={false}  tickFormatter={(value) => Math.round(value)} />
 					<Tooltip content={<CustomTooltip />} />
 
 					<Bar yAxisId="right" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} />
@@ -59,4 +62,3 @@ export default function DailyActivity({ userId }) {
 		</div>
 	);
 }
-

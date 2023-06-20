@@ -4,12 +4,21 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { USER_AVERAGE_SESSIONS } from "../../data/mock";
 import { CustomizedCross, CustomizedActiveDot, CustomTooltip, CustomizedAxisTick } from "./CustomAverageSessionDuration";
 
+const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
+
 export default function AverageSessionDuration({ userId }) {
 	const user = USER_AVERAGE_SESSIONS.find((user) => user.userId === userId);
 
 	if (!user) {
 		return null;
 	}
+
+	const mappedSessions = user.sessions.map(session => {
+		return {
+		  ...session,
+		  day: daysOfWeek[session.day]
+		};
+	  });
 
 	return (
 		<div className={styles.averageSessionDuration}>
@@ -18,7 +27,7 @@ export default function AverageSessionDuration({ userId }) {
 			</h3>
 			<ResponsiveContainer width="100%" height="100%">
 				<LineChart
-					data={user.sessions}
+					 data={mappedSessions}
 					strokeWidth={0}
 					margin={{
 						top: 0,
