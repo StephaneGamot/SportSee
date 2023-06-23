@@ -1,20 +1,33 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styles from "../../styles/page.module.css";
 import Title from "../../components/title/Title.js";
 import DailyActivity from "../../components/dailyActivity/DailyActivity";
-import TrainingBoxes from "../../components/training/TrainingBoxes";
-import Nrjs from "../../components/nrj/Nrjs";
 import User from "../../models/User";
 import Activity from "../../models/Activity";
-import AverageSessions from "../../models/AverageSessions";
+import Intensity from "../../components/intensity/Intensity";
 import Performance from "../../models/Performance";
 
 const UserPage = ({ user, activity, averageSessions, performance }) => {
+	console.log('Rendering UserPage');  // Ajoutez cette ligne
+	console.log('UserPage props', { user, activity, averageSessions, performance });  // Ajoutez cette ligne
+	const router = useRouter();
+	const { id } = router.query;
+
+	if (!id || !user || !activity) {
+		return <div>Loading...</div>;
+	}
+	console.log(user);
+
+	let userInstance = new User(user); 
+	let activityInstance = new Activity(activity); 
+	let performanceInstance = new Performance(performance); 
+
 	return (
 		<div className={styles.main}>
-			<Title user={user} />
-			<DailyActivity sessions={activity.sessions} />
-			<Nrjs keyData={user.keyData} />
+			<Title user={userInstance} />
+			<DailyActivity activity={activityInstance} />
+			<Intensity performance={performanceInstance} />
 		</div>
 	);
 };
@@ -37,25 +50,45 @@ export async function getServerSideProps(context) {
 	};
 
 	const userResponse = await fetchData(`http://localhost:3002/user/${id}`);
-	const user = userResponse && userResponse.id ? new User(userResponse) : null;
-	console.log
+
+	if (!userResponse || !userResponse.data || !userResponse.data.userInfos) {
+		return {
+			props: {
+				user: null,
+				activity: null,
+				performance: null,
+			},
+		};
+	}
+	const user = {
+		id: userResponse.data.id,
+		firstName: userResponse.data.userInfos.firstName,
+		lastName: userResponse.data.userInfos.lastName,
+		age: userResponse.data.userInfos.age,
+		//score: userResponse.data.todayScore,
+		keyData: userResponse.data.keyData,
+	};
 
 	const activityResponse = await fetchData(`http://localhost:3002/user/${id}/activity`);
-	const activity = activityResponse && activityResponse.userId ? new Activity(activityResponse) : null;
-
-	const averageSessionsResponse = await fetchData(`http://localhost:3002/user/${id}/average-sessions`);
-	const averageSessions = averageSessionsResponse && averageSessionsResponse.userId ? new AverageSessions(averageSessionsResponse) : null;
+	const activityData = activityResponse.data; 
+	const activity = {
+		userId: activityData.userId,
+		sessions: activityData.sessions || [],
+	};
 
 	const performanceResponse = await fetchData(`http://localhost:3002/user/${id}/performance`);
-	const performance = performanceResponse && performanceResponse.userId ? new Performance(performanceResponse) : null;
-
+	const performanceData = performanceResponse.data; 
+	const performance = {
+	  userId: performanceData.userId,
+	  data: performanceData.data || [],
+	};  
+	console.log(performanceResponse);
 	return {
-		props: {
-			user: user ? user.toJSON() : {},
-			activity: activity ? activity.toJSON() : {},
-			averageSessions: averageSessions ? averageSessions.toJSON() : {},
-			performance: performance ? performance.toJSON() : {},
-		},
+	  props: {
+		user,
+		activity, 
+		performance,
+	  },
 	};
 }
 

@@ -1,18 +1,16 @@
 import React from "react";
-import { USER_MAIN_DATA } from "../../data/mock";
-import User from '../../models/User';
+import User from "../../models/User";
 import styles from "../../styles/page.module.css";
 
-export default function Title({ id }) {
-	let userData = USER_MAIN_DATA.find((data) => data.id === id);
-
-	if (!userData) {
-		return <div>User Absent</div>;
+export default function Title({ user }) {
+	console.log(user);
+	if (!user) {
+		return <div>User Absent encore</div>;
 	}
 
-	let user = new User(userData);
 	let firstName = user.firstName;
-	
+	console.log(firstName);
+
 	return (
 		<div className={styles.title}>
 			<h1 className={styles.h1}>

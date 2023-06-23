@@ -22,8 +22,11 @@ body {
 	position: absolute;
 	background: white;
 	overflow-x: hidden;
-	height: 1024px;
+	height: 100vh; /* Utilisez la hauteur du viewport pour adapter la hauteur du corps */
 	font-family: 'Roboto', sans-serif;
+	width: 80%; /* utilisez un pourcentage pour la largeur */
+	max-width: 1440px; /* définissez une largeur maximale */
+	min-width: 1024px; /* définissez une largeur minimale */
 }
 
 h1 {

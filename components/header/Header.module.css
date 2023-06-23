@@ -1,6 +1,7 @@
 .header {
 	background-color: var(--primaryColor);
-    width: 1440px;
+    max-width: 1440px;
+    width: 100vw;
     height: 91px;
     z-index: 2;
     position: fixed;
@@ -9,7 +10,7 @@
     display: flex;
 }
 .nav {
-	width: calc(100% - 234px);
+	width: calc(100vw - 234px);
     display: flex;
     justify-content: space-around;
     margin-top: 36px;
@@ -28,6 +29,6 @@ color: var(--white);
 }
 @media (max-width: 1200px) { 
     .header {
-        width: 100%;
+        width: 100vw;
     }
 }

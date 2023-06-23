@@ -1,8 +1,0 @@
-.trainingBoxes {
-	height: 263px;
-	width: 834px;
-	border-radius: 5px;
-	overflow: hidden;
-	display: flex;
-	justify-content: space-between;
-}

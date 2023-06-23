@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import styles from "./DailyActivity.module.css";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { USER_ACTIVITY } from "../../data/mock";
+import Activity from "../../models/Activity";
 import { RedDot, DarkDot } from "@/utils/dots";
 
 function CustomTooltip({ payload, active }) {
@@ -17,20 +17,28 @@ function CustomTooltip({ payload, active }) {
 	return null;
 }
 
-export default function DailyActivity({ userId, sessions }) {
-	if (!userId) {
-		return <div>aucune activité pour cet utilisateur</div>;
+export default function DailyActivity({ activityData, userId, activity }) {
+	let userActivityData;
+  
+	if (activity) {
+	  userActivityData = activity;
+	} else {
+	  userActivityData = activityData.find((activity) => activity.userId === userId);
 	}
-	let user = USER_ACTIVITY.find((user) => user.userId === userId);
-	if (user) {
-		user = {
-			...user,
-			sessions: user.sessions.map((session) => ({
-				...session,
-				day: session.day.substring(9),
-			})),
-		};
+	
+	if (!userActivityData) {
+	  return <div>aucune activité pour cet utilisateur</div>;
 	}
+	
+	const userActivityInstance = new Activity(userActivityData);
+  
+	let user = {
+	  userId: userActivityInstance.userId,
+	  sessions: userActivityInstance.sessions.map((session) => ({
+		...session,
+		day: session.day.substring(9),
+	  })),
+	};
 
 	return (
 		<div className={styles.dailyA}>
