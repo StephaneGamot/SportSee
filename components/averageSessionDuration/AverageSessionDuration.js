@@ -4,24 +4,20 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { CustomizedCross, CustomizedActiveDot, CustomTooltip, CustomizedAxisTick } from "./CustomAverageSessionDuration";
 import AverageSessions from "../../models/AverageSessions";
 
-const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
-
 export default function AverageSessionDuration({ userId, averageSessions, aSDurationData }) {
-
+	const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
 	let userASDurationData;
 	if (averageSessions) {
 		userASDurationData = averageSessions;
 	} else {
 		if (!aSDurationData) {
-			console.error('aSDurationData is undefined!');
+			console.error("aSDurationData is undefined!");
 			return null;
 		}
 		userASDurationData = aSDurationData.find((aSDuration) => aSDuration.userId === userId);
 	}
-	
 
 	let userASDurationInstance = new AverageSessions(averageSessions);
-
 
 	let user = {
 		userId: userASDurationInstance.userId,

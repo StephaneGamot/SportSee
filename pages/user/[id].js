@@ -10,6 +10,7 @@ import Performance from "../../models/Performance";
 import Score from "../../components/score/Score";
 import ASDuration from "../../components/averageSessionDuration/AverageSessionDuration";
 import AverageSessions from "../../models/AverageSessions";
+import Energies from "../../components/energie/Energies";
 
 const UserPage = ({ user, activity, averageSessions, performance }) => {
 	const router = useRouter();
@@ -28,10 +29,13 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 	return (
 		<div className={styles.main}>
 			<Title user={userInstance} />
-			<DailyActivity activity={activityInstance} />
+			<DailyActivity className={styles.dailyActivity} activity={activityInstance} />
+			<Energies className={styles.energies} user={userInstance}/>
+			<div className={styles.trainingBoxes}>
+			<ASDuration averageSessions={aSDurationInstance} />
 			<Intensity performance={performanceInstance} />
 			<Score user={userInstance} />
-			<ASDuration averageSessions={aSDurationInstance} />
+			</div>
 		</div>
 	);
 };

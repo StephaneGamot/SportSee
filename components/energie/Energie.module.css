@@ -1,4 +1,4 @@
-.AllNrjs {
+.AllEnergies {
 	height: 613px;
 	width: 258px;
 	background-color: transparent;
@@ -8,7 +8,7 @@
     justify-content: space-between;
 }
 
-.nrjCard {
+.energieCard {
 	width: 258px;
 	height: 124px;
 	border-radius: 5px;
@@ -65,7 +65,7 @@
   }
 
   @media (max-width: 1200px) { 
-    .AllNrjs {
+    .AllEnergies {
       height: 124px;
       width: 835px;
       background-color: transparent;

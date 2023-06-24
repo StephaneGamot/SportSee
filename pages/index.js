@@ -5,7 +5,7 @@ import DailyActivity from "../components/dailyActivity/DailyActivity";
 import ASDuration from "../components/averageSessionDuration/AverageSessionDuration";
 import Intensity from "../components/intensity/Intensity";
 import Score from "../components/score/Score";
-import Nrjs from "../components/nrj/Nrjs";
+import Energies from "../components/energie/Energies";
 import User from "../models/User";
 import Performance from "../models/Performance";
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_PERFORMANCE, USER_AVERAGE_SESSIONS } from "../data/mock";
@@ -23,8 +23,10 @@ export default function Home() {
 		const userData = USER_MAIN_DATA.find((data) => data.id === id);
 		if (userData) {
 			const score = userData.todayScore !== undefined ? userData.todayScore : userData.score !== undefined ? userData.score : 0;
+			const keyData = userData.keyData;
 			userData.score = score;
 			userData.todayScore = score; 
+			userData.keyData = keyData;
 			const userInstance = new User(userData);
 			setUser(userInstance);
 		}
@@ -56,8 +58,8 @@ export default function Home() {
 			<div className={styles.main}>
 				<Title user={user} />
 				<DailyActivity className={styles.dailyActivity} activityData={USER_ACTIVITY} userId={id} />
-				<Nrjs className={styles.nrjs} id={id} />
-				<Nrjs className={styles.nrjs} id={id} />
+				<Energies className={styles.energies} user={user}/>
+				
 				<div className={styles.trainingBoxes}>
 					<ASDuration  averageSessions={averageSessions}   userId={id} />
 					<Intensity performance={performance} userId={id} />
