@@ -16,10 +16,9 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 	const router = useRouter();
 	const { id } = router.query;
 
-	if (!id || !user || !activity) {
+	if (!id || !user || !activity || !averageSessions || !performance) {
 		return <div>Loading...</div>;
 	}
-	console.log(user);
 
 	let userInstance = new User(user);
 	let activityInstance = new Activity(activity);
@@ -30,11 +29,11 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 		<div className={styles.main}>
 			<Title user={userInstance} />
 			<DailyActivity className={styles.dailyActivity} activity={activityInstance} />
-			<Energies className={styles.energies} user={userInstance}/>
+			<Energies className={styles.energies} user={userInstance} />
 			<div className={styles.trainingBoxes}>
-			<ASDuration averageSessions={aSDurationInstance} />
-			<Intensity performance={performanceInstance} />
-			<Score user={userInstance} />
+				<ASDuration averageSessions={aSDurationInstance} />
+				<Intensity performance={performanceInstance} />
+				<Score user={userInstance} />
 			</div>
 		</div>
 	);
@@ -57,6 +56,7 @@ export async function getServerSideProps(context) {
 			});
 	};
 
+	/* USER */
 	const userResponse = await fetchData(`http://localhost:3002/user/${id}`);
 
 	if (!userResponse || !userResponse.data || !userResponse.data.userInfos) {
@@ -65,7 +65,7 @@ export async function getServerSideProps(context) {
 				user: null,
 				activity: null,
 				performance: null,
-				averageSessions: null, 
+				averageSessions: null,
 			},
 		};
 	}
@@ -79,28 +79,28 @@ export async function getServerSideProps(context) {
 		keyData: userResponse.data.keyData,
 	};
 
+	/* AVERAGE SESSIONS */
 	const aSDurationResponse = await fetchData(`http://localhost:3002/user/${id}/average-sessions`);
-const aSDurationData = aSDurationResponse.data;
+	const aSDurationData = aSDurationResponse.data;
 
-if (!aSDurationData) {
-	console.error('aSDurationData is malformed:', aSDurationData);
-	return {
-		props: {
-			user,
-			activity,
-			performance,
-			averageSessions: null, 
-		},
+	if (!aSDurationData) {
+		console.error("aSDurationData is malformed:", aSDurationData);
+		return {
+			props: {
+				user,
+				activity,
+				performance,
+				averageSessions: null,
+			},
+		};
+	}
+
+	const aSDuration = {
+		userId: aSDurationData.userId,
+		sessions: aSDurationData.sessions || [],
 	};
-}
 
-const aSDuration = {
-	userId: aSDurationData.userId,
-	sessions: aSDurationData.sessions || [],
-};
-
-
-
+	/* ACTIVITY */
 	const activityResponse = await fetchData(`http://localhost:3002/user/${id}/activity`);
 	const activityData = activityResponse.data;
 	const activity = {
@@ -108,11 +108,7 @@ const aSDuration = {
 		sessions: activityData.sessions || [],
 	};
 
-
-
-
-
-
+	/* PERFORMANCE */
 	const performanceResponse = await fetchData(`http://localhost:3002/user/${id}/performance`);
 	const performanceData = performanceResponse.data;
 	const performance = {
@@ -125,7 +121,7 @@ const aSDuration = {
 			user,
 			activity,
 			performance,
-			averageSessions: aSDuration, // Ajoutez cette ligne
+			averageSessions: aSDuration,
 		},
 	};
 }
