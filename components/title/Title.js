@@ -9,7 +9,8 @@ export default function Title({ user }) {
 	}
 
 	let firstName = user.firstName;
-	console.log(firstName);
+	let lastName = user.lastName;
+	console.log(firstName + " " + lastName);
 
 	return (
 		<div className={styles.title}>
