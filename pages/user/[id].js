@@ -8,10 +8,10 @@ import Activity from "../../models/Activity";
 import Intensity from "../../components/intensity/Intensity";
 import Performance from "../../models/Performance";
 import Score from "../../components/score/Score";
+import ASDuration from "../../components/averageSessionDuration/AverageSessionDuration";
+import AverageSessions from "../../models/AverageSessions";
 
 const UserPage = ({ user, activity, averageSessions, performance }) => {
-	console.log("Rendering UserPage"); // Ajoutez cette ligne
-	console.log("UserPage props", { user, activity, averageSessions, performance }); // Ajoutez cette ligne
 	const router = useRouter();
 	const { id } = router.query;
 
@@ -22,6 +22,7 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 
 	let userInstance = new User(user);
 	let activityInstance = new Activity(activity);
+	let aSDurationInstance = new AverageSessions(averageSessions);
 	let performanceInstance = new Performance(performance);
 
 	return (
@@ -30,6 +31,7 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 			<DailyActivity activity={activityInstance} />
 			<Intensity performance={performanceInstance} />
 			<Score user={userInstance} />
+			<ASDuration averageSessions={aSDurationInstance} />
 		</div>
 	);
 };
@@ -59,6 +61,7 @@ export async function getServerSideProps(context) {
 				user: null,
 				activity: null,
 				performance: null,
+				averageSessions: null, 
 			},
 		};
 	}
@@ -72,6 +75,28 @@ export async function getServerSideProps(context) {
 		keyData: userResponse.data.keyData,
 	};
 
+	const aSDurationResponse = await fetchData(`http://localhost:3002/user/${id}/average-sessions`);
+const aSDurationData = aSDurationResponse.data;
+
+if (!aSDurationData) {
+	console.error('aSDurationData is malformed:', aSDurationData);
+	return {
+		props: {
+			user,
+			activity,
+			performance,
+			averageSessions: null, 
+		},
+	};
+}
+
+const aSDuration = {
+	userId: aSDurationData.userId,
+	sessions: aSDurationData.sessions || [],
+};
+
+
+
 	const activityResponse = await fetchData(`http://localhost:3002/user/${id}/activity`);
 	const activityData = activityResponse.data;
 	const activity = {
@@ -79,18 +104,24 @@ export async function getServerSideProps(context) {
 		sessions: activityData.sessions || [],
 	};
 
+
+
+
+
+
 	const performanceResponse = await fetchData(`http://localhost:3002/user/${id}/performance`);
 	const performanceData = performanceResponse.data;
 	const performance = {
 		userId: performanceData.userId,
 		data: performanceData.data || [],
 	};
-	console.log(performanceResponse);
+
 	return {
 		props: {
 			user,
 			activity,
 			performance,
+			averageSessions: aSDuration, // Ajoutez cette ligne
 		},
 	};
 }

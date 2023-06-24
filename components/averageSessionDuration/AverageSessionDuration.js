@@ -1,24 +1,47 @@
 import React from "react";
 import styles from "./averageSessionDuration.module.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Customized } from "recharts";
-import { USER_AVERAGE_SESSIONS } from "../../data/mock";
 import { CustomizedCross, CustomizedActiveDot, CustomTooltip, CustomizedAxisTick } from "./CustomAverageSessionDuration";
+import AverageSessions from "../../models/AverageSessions";
 
 const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
 
-export default function AverageSessionDuration({ userId }) {
-	const user = USER_AVERAGE_SESSIONS.find((user) => user.userId === userId);
+export default function AverageSessionDuration({ userId, averageSessions, aSDurationData }) {
+
+	let userASDurationData;
+	if (averageSessions) {
+		userASDurationData = averageSessions;
+	} else {
+		if (!aSDurationData) {
+			console.error('aSDurationData is undefined!');
+			return null;
+		}
+		userASDurationData = aSDurationData.find((aSDuration) => aSDuration.userId === userId);
+	}
+	
+
+	let userASDurationInstance = new AverageSessions(averageSessions);
+
+
+	let user = {
+		userId: userASDurationInstance.userId,
+		sessions: userASDurationInstance.sessions.map((session) => ({
+			...session,
+			day: session.day,
+			sessionLength: session.sessionLength,
+		})),
+	};
 
 	if (!user) {
 		return null;
 	}
 
-	const mappedSessions = user.sessions.map(session => {
+	const mappedSessions = user.sessions.map((session) => {
 		return {
-		  ...session,
-		  day: daysOfWeek[session.day]
+			...session,
+			day: daysOfWeek[session.day],
 		};
-	  });
+	});
 
 	return (
 		<div className={styles.averageSessionDuration}>
@@ -27,7 +50,7 @@ export default function AverageSessionDuration({ userId }) {
 			</h3>
 			<ResponsiveContainer width="100%" height="100%">
 				<LineChart
-					 data={mappedSessions}
+					data={mappedSessions}
 					strokeWidth={0}
 					margin={{
 						top: 0,
