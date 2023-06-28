@@ -7,8 +7,13 @@ import Chicken from "../../public/assets/chicken.svg";
 import Apple from "../../public/assets/apple.svg";
 import Cheeseburger from "../../public/assets/cheeseburger.svg";
 
+/**
+ * The Energies function renders a component that displays the calorie, protein, carbohydrate, and
+ * lipid counts for a given user.
+ * @returns The Energies component is being returned.
+ */
 export default function Energies({ user }) {
-	
+	console.log("Rendering Energies");
 	if (!user) {
 		return <div>Aucun utilisateur</div>;
 	}
@@ -16,6 +21,7 @@ export default function Energies({ user }) {
 	let proteinWeight = user.proteinCount;
 	let carbohydrateWeight = user.carbohydrateCount;
 	let lipidWeight = user.lipidCount;
+	console.log(caloriesNumber, proteinWeight, carbohydrateWeight, lipidWeight);
 
 	return (
 		<div className={styles.AllEnergies}>

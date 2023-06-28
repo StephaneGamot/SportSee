@@ -7,7 +7,7 @@ export default class User {
 		this.score = data.score;
 		this.todayScore = data.todayScore;
 		this.keyData = data.keyData;
-		this.calorieCount = data.keyData ? data.keyData.calorieCount : null;
+		this.calorieCount = data.keyData.calorieCount || data.keyData ? data.keyData.calorieCount : null;
 		this.proteinCount = data.keyData ? data.keyData.proteinCount : null;
 		this.carbohydrateCount = data.keyData ? data.keyData.carbohydrateCount : null;
 		this.lipidCount = data.keyData ? data.keyData.lipidCount : null;

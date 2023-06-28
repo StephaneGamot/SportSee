@@ -41,6 +41,27 @@
 	grid-row: 3;
 }
 
+  .container {
+	margin: 150px 0 0 180px
+  }
+  .container H1 {
+	margin-bottom:50px;
+  }
+  .container p {
+	font-size: 20px;
+  }
+.energie {
+	height: 124px;
+    width: 835px;
+    background-color: transparent;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    grid-column: 1;
+    grid-row: 4;
+
+}
 @media (max-width: 1200px) {
 	.main {
 		padding: 127px 0 0 0;

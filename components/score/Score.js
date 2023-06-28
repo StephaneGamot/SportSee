@@ -1,8 +1,14 @@
 import React from "react";
 import styles from "./Score.module.css";
-import User from "@/models/User";
-import { RadialBarChart, RadialBar, PolarGrid, Cell, ResponsiveContainer, PolarAngleAxis } from "recharts";
+import User from "../../models/User";
+import { RadialBarChart, RadialBar, Cell, ResponsiveContainer, PolarAngleAxis } from "recharts";
 
+/**
+ * The Score function returns a radial bar chart displaying a user's score as a percentage of their
+ * goal, or 0 if no user is provided.
+ * @returns A React component that displays a radial bar chart representing the user's score. If there
+ * is no user, it returns a message saying "Aucun utilisateur".
+ */
 export default function Score({ user }) {
 	if (!user) {
 		return <div>Aucun utilisateur</div>;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/page.module.css";
 import Title from "../../components/title/Title.js";
@@ -13,8 +13,15 @@ import AverageSessions from "../../models/AverageSessions";
 import Energies from "../../components/energie/Energies";
 
 const UserPage = ({ user, activity, averageSessions, performance }) => {
+	
 	const router = useRouter();
 	const { id } = router.query;
+
+	useEffect(() => {
+		if (process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true') {
+		  router.push(`/`);
+		}
+	  });
 
 	if (!id || !user || !activity || !averageSessions || !performance) {
 		return <div>Loading...</div>;

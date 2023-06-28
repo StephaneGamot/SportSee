@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./averageSessionDuration.module.css";
 import { Cross } from "recharts";
+
 const chartWidth = 258;
 const chartHeight = 263;
 

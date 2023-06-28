@@ -11,14 +11,21 @@ import Performance from "../models/Performance";
 import AverageSessions from "../models/AverageSessions";
 import Activity from "../models/Activity";
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_PERFORMANCE, USER_AVERAGE_SESSIONS } from "../data/mock";
+import { useRouter } from 'next/router';
 
 export default function Home() {
-	const id = 12;
-
+	const router = useRouter();
+	const id = 18;
 	const [user, setUser] = useState(null);
 	const [performance, setPerformance] = useState(null);
 	const [averageSessions, setAverageSessions] = useState(null);
 	const [activity, setActivity] = useState(null);
+
+	useEffect(() => {
+		if (process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'false') {
+		  router.push(`/user/${id}`);
+		}
+	  });
 
 	useEffect(() => {
 		const userData = USER_MAIN_DATA.find((data) => data.id === id);

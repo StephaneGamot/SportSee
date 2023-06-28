@@ -4,6 +4,11 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { CustomizedCross, CustomizedActiveDot, CustomTooltip, CustomizedAxisTick } from "./CustomAverageSessionDuration";
 import AverageSessions from "../../models/AverageSessions";
 
+/**
+ * The function displays a line chart of the average session duration for a user.
+ * @returns A React component that renders a line chart displaying the average session duration for a
+ * user, based on the provided data.
+ */
 export default function AverageSessionDuration({ userId, averageSessions, aSDurationData }) {
 	const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
 	let userASDurationData;
