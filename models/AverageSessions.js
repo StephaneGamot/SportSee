@@ -3,7 +3,7 @@ export default class AverageSessions {
 		this.data = data;
 	}
 
-	get userId() {
+	get userId() {                // Création accesseurs get qui permettent d'accéder aux propriétés userId 
 		return this.data.userId;
 	}
 
@@ -11,9 +11,9 @@ export default class AverageSessions {
 		return this.data.sessions;
 	}
 
-	getSession(day) {
-		if (this.data && this.data.sessions && Array.isArray(this.data.sessions)) {
-			let sessionData = this.data.sessions.find(s => s.day === day);
+	getSession(day) {             // Je retourne les informations
+		if (this.data && this.data.sessions && Array.isArray(this.data.sessions)) { // si data existe, si la valeur passé est dans un tableau
+			let sessionData = this.data.sessions.find(s => s.day === day);          // On retourne le 1er élément 
 			return sessionData ? sessionData.sessionLength : null;
 		} else {
 			console.error('Data is not correctly formatted:', this.data);

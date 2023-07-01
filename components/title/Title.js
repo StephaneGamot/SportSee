@@ -3,11 +3,11 @@ import User from "../../models/User";
 import styles from "../../styles/page.module.css";
 
 /**
- * The Title function displays a greeting message with the user's first name and a congratulatory
- * message if the user's information is present.
- * @returns The `Title` component is being returned. If the `user` prop is not provided, it returns a
- * `<div>` element with the text "User Absent encore". If the `user` prop is provided, it returns a
- * `<div>` element with a title and a message that congratulates the user for achieving their goals.
+ * La fonction Titre affiche un message d'accueil avec le prénom de l'utilisateur et un message de félicitations.
+ * si les informations de l'utilisateur sont présentes.
+ * @returns  Le composant `Title` est retourné. Si la propriété `user` n'est pas fournie, il renvoie une propriété
+ * `<div>`  avec le texte "User Absent encore". Si le prop de l'utilisateur est fourni, il renvoie un
+ * `<div>`  avec un titre et un message qui félicite l'utilisateur d'avoir atteint ses objectifs.
  */
 export default function Title({ user }) {
 	if (!user) {

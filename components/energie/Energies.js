@@ -8,9 +8,9 @@ import Apple from "../../public/assets/apple.svg";
 import Cheeseburger from "../../public/assets/cheeseburger.svg";
 
 /**
- * The Energies function renders a component that displays the calorie, protein, carbohydrate, and
- * lipid counts for a given user.
- * @returns The Energies component is being returned.
+ * La fonction Énergies génère un composant qui affiche le nombre de calories, de protéines, de glucides et de lipides pour un utilisateur donné.
+ * pour un utilisateur donné.
+ * @returns Le composant Energies est retourné.
  */
 export default function Energies({ user }) {
 	console.log("Rendering Energies");

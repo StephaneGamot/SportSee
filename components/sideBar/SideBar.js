@@ -8,11 +8,11 @@ import Bike from "../../public/assets/bike.png";
 import Weight from "../../public/assets/weight.png";
 
 /**
- * The SideBar function returns a component that displays four icons and a copyright text.
- * @param props - an object containing any props passed to the SideBar component. However, since there
- * are no props being passed in this code snippet, the props parameter is not being used.
- * @returns A React functional component that renders a side bar with four icons and a vertical text at
- * the bottom.
+ * La fonction SideBar renvoie un composant qui affiche quatre icônes et un texte de copyright.
+ * @param props - un objet contenant tous les props passés au composant SideBar. Cependant, étant donné qu'il n'y a
+ * Cependant, étant donné qu'aucun accessoire n'est transmis dans cet extrait de code, le paramètre props n'est pas utilisé.
+ * @returns Un composant fonctionnel React qui rend une barre latérale avec quatre icônes et un texte vertical en bas.
+ * en bas.
  */
 export default function SideBar(props) {
 	return (

@@ -3,9 +3,9 @@ import styles from "./Header.module.css";
 import Link from "next/link";
 
 /**
- * The function creates a navigation bar with links to different pages.
- * @returns The `NavBar` component is being returned, which contains a `div` element with four `Link`
- * components inside.
+ * Cette fonction crée une barre de navigation avec des liens vers différentes pages.
+ * @returns Le composant `NavBar` est retourné, il contient un élément `div` avec quatre composants `Link`
+ * à l'intérieur.
  */
 export default function NavBar() {
 	return (

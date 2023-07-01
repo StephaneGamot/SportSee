@@ -5,9 +5,9 @@ import { CustomizedAxisTick } from "./CustomIntensity";
 import Performance from "../../models/Performance";
 
 /**
- * The function renders a radar chart displaying performance data for a user.
- * @returns A React component that renders a RadarChart using performance data. If there is no
- * performance data available for the user, a message is displayed instead.
+ * La fonction rend un diagramme radar affichant les données de performance d'un utilisateur.
+ * @returns Un composant React qui rend un RadarChart en utilisant les données de performance. S'il n'y a pas de données de performance disponibles pour l'utilisateur, un message est affiché à la place.
+ * données de performance disponibles pour l'utilisateur, un message est affiché à la place.
  */
 export default function Intensity({ performanceData, userId, performance }) {
 	let performanceInstance;
@@ -41,11 +41,11 @@ export default function Intensity({ performanceData, userId, performance }) {
 	return (
 		<div className={styles.intensity}>
 			<ResponsiveContainer width="100%" height="100%">
-				<RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-					<PolarGrid gridType="polygon" radialLines={false} />
-					<PolarAngleAxis dataKey="kind" tick={<CustomizedAxisTick />} />
-					<PolarRadiusAxis tickCount={6} axisLine={false} tick={false} />
-					<Radar dataKey="value" stroke="none" fill="#FF0101" fillOpacity={0.7} />
+				<RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>                {/* Création le graphique radar, centré */}
+					<PolarGrid gridType="polygon" radialLines={false} />                    {/* création d'une grille polaire polygonale */}
+					<PolarAngleAxis dataKey="kind" tick={<CustomizedAxisTick />} />         {/* Création l'axe des angles du graphique */}
+					<PolarRadiusAxis tickCount={6} axisLine={false} tick={false} />         {/* Création l'axe du rayon du graphique */}
+					<Radar dataKey="value" stroke="none" fill="#FF0101" fillOpacity={0.7} />{/* Controle la valeur, couleur de fond, ligne */}
 				</RadarChart>
 			</ResponsiveContainer>
 		</div>

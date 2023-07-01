@@ -8,11 +8,11 @@ const translations = {
 };
 
 /**
- * The function CustomizedAxisTick adjusts the position of text labels based on their payload value.
+ * La fonction CustomizedAxisTick ajuste la position des étiquettes de texte en fonction de la valeur de leur charge utile.
  * @returns a JSX element, specifically a `<text>` element with attributes such as `x`, `y`,
- * `texttype`, `textAnchor`, `fill`, `dy`, and `fontSize`. The text content of the element is
- * determined by the `translations` object, which is using the `payload.value` as a key to retrieve the
- * corresponding translation. The function also includes conditional statements
+ * `texttype`, `textAnchor`, `fill`, `dy`, et `fontSize`. Le contenu textuel de l'élément est
+ * déterminé par l'objet `translations`, qui utilise `payload.value` comme clé pour récupérer la traduction correspondante.
+ * traduction correspondante. La fonction inclut également des instructions conditionnelles
  */
 export const CustomizedAxisTick = ({ x, y, payload }) => {
 	let value;

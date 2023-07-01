@@ -5,9 +5,9 @@ import Logo from "../../public/assets/logo.png";
 import NavBar from "./NavBar";
 
 /**
- * The function returns a header component with a logo and a navigation bar.
- * @returns The `Header` component is returning a `div` element containing an `Image` component and a
- * `NavBar` component.
+ * La fonction renvoie un composant d'en-tête avec un logo et une barre de navigation.
+ * @returns Le composant `Header` renvoie un élément `div` contenant un composant `Image` et un composant `NavBar`.
+ * composant `NavBar`.
  */
 export default function Header() {
 	return (

@@ -5,18 +5,18 @@ import Activity from "../../models/Activity";
 import { RedDot, DarkDot } from "@/utils/dots";
 
 /**
- * This is a custom tooltip component in JavaScript that displays information from a payload when
- * active.
- * @returns A React component that renders a custom tooltip. If the `active` prop is true and the
- * `payload` prop is not null or empty, the component will render two paragraphs with information from
- * the `payload` array. If the conditions are not met, the component will return null.
+ * Il s'agit d'un composant d'infobulle personnalisé en JavaScript qui affiche des informations à partir d'une charge utile lorsqu'elle est
+ * actif.
+ * @returns Un composant React qui rend une infobulle personnalisée. Si la propriété `active` est vraie et que la propriété
+ * `payload` n'est pas nul ou vide, le composant rendra deux paragraphes avec des informations provenant de
+ * du tableau `payload`. Si les conditions ne sont pas remplies, le composant renverra null.
  */
 function CustomTooltip({ payload, active }) {
 	if (active && payload && payload.length) {
 		return (
 			<div className={styles.customTooltip}>
-				<p>{`${payload[0].value} kg`}</p> {/* Au survol (payload) la 1er info apprait dans mon tooltip */}
-				<p>{`${payload[1].value} kcal`}</p> {/* Au survol (payload) la 2nd info apprait dans mon tooltip */}
+				<p>{`${payload[0].value} kg`}</p>     {/* Au survol (payload) la 1er info apprait dans mon tooltip */}
+				<p>{`${payload[1].value} kcal`}</p>   {/* Au survol (payload) la 2nd info apprait dans mon tooltip */}
 			</div>
 		);
 	}
@@ -25,11 +25,11 @@ function CustomTooltip({ payload, active }) {
 }
 
 /**
- * The DailyActivity function displays a bar chart of a user's daily activity data, including their
- * weight and calories burned.
- * @returns A React component that displays a daily activity chart for a user, with bars representing
- * their weight and calories burned for each day. If there is no activity data for the user, a message
- * is displayed instead.
+ * La fonction Activité quotidienne affiche un diagramme à barres des données d'activité quotidienne d'un utilisateur, y compris son
+ * poids et les calories brûlées.
+ * @returns Un composant React qui affiche un graphique d'activité quotidienne pour un utilisateur, avec des barres représentant
+ * son poids et les calories brûlées pour chaque jour. S'il n'y a pas de données d'activité pour l'utilisateur, un message
+ * est affiché à la place.
  */
 export default function DailyActivity({ activityData, userId, activity }) {
 	let userActivityData;
@@ -68,25 +68,25 @@ export default function DailyActivity({ activityData, userId, activity }) {
 				</div>
 			</div>
 
-			<ResponsiveContainer className={styles.responsiveContainer}>
-				<BarChart className={styles.barChart} data={user.sessions}>
-					<CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DEDEDE" />
+			<ResponsiveContainer className={styles.responsiveContainer}>                      {/* C'est un composant Recharts qui rend le graphique responsive */}
+				<BarChart className={styles.barChart} data={user.sessions}>                   {/* C'est le composant qui crée le graphique à barres. */}
+					<CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DEDEDE" /> {/* C'est le composant qui dessine une grille cartésienne (grille d'arrière-plan) */}
 					<XAxis dataKey="day" axisLine={{ stroke: "#DEDEDE" }} tickLine={false} tick={{ fill: "#9B9EAC", dy: 15 }} className={styles.xaxis} />
 
-					<YAxis yAxisId="left" dataKey="calories" hide={true} />
+					<YAxis yAxisId="left" dataKey="calories" hide={true} />                   {/* C'est le composant qui dessine l'axe des y - cache cet axe */}
 					<YAxis
 						yAxisId="right"
-						dataKey="kilogram"
-						orientation="right"
-						domain={["dataMin - 1", "dataMax + 1"]}
-						tickLine={false}
-						axisLine={false}
-						tickFormatter={(value) => Math.round(value)}
+						dataKey="kilogram"                              //  Il affiche les kilogrammes 
+						orientation="right"                             // Il est placé à droite. 
+						domain={["dataMin - 1", "dataMax + 1"]}         // Spécifie l'intervalle de valeurs de l'axe 
+						tickLine={false}                                // Suppression des ligne de marquage
+						axisLine={false}                                // Suppression de l'axe
+						tickFormatter={(value) => Math.round(value)}    // Pour arrondir les valeurs de l'axe.
 					/>
-					<Tooltip content={<CustomTooltip />} />
+					<Tooltip content={<CustomTooltip />} />             {/* Affiche une info-bulle lorsque l'utilisateur survole une barre */}
 
-					<Bar yAxisId="right" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} />
-					<Bar yAxisId="left" dataKey="calories" fill="#E60000" barSize={7} radius={[50, 50, 0, 0]} />
+					<Bar yAxisId="right" dataKey="kilogram" fill="#282D30" barSize={7} radius={[50, 50, 0, 0]} /> {/* Dessine les barres du graphique */}
+					<Bar yAxisId="left" dataKey="calories" fill="#E60000" barSize={7} radius={[50, 50, 0, 0]} />  {/* Dessine les barres du graphique */}
 				</BarChart>
 			</ResponsiveContainer>
 		</div>
