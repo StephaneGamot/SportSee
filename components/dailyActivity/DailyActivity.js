@@ -68,8 +68,8 @@ export default function DailyActivity({ activityData, userId, activity }) {
 				</div>
 			</div>
 
-			<ResponsiveContainer className={styles.responsiveContainer}>                      {/* C'est un composant Recharts qui rend le graphique responsive */}
-				<BarChart className={styles.barChart} data={user.sessions}>                   {/* C'est le composant qui crée le graphique à barres. */}
+			<ResponsiveContainer className={styles.responsiveContainer}>                      
+				<BarChart className={styles.barChart} data={user.sessions}>                   
 					<CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DEDEDE" /> {/* C'est le composant qui dessine une grille cartésienne (grille d'arrière-plan) */}
 					<XAxis dataKey="day" axisLine={{ stroke: "#DEDEDE" }} tickLine={false} tick={{ fill: "#9B9EAC", dy: 15 }} className={styles.xaxis} />
 

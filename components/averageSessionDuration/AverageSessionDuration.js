@@ -4,11 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { CustomizedCross, CustomizedActiveDot, CustomTooltip, CustomizedAxisTick } from "./CustomAverageSessionDuration";
 import AverageSessions from "../../models/AverageSessions";
 
-/**
- * La fonction affiche un graphique linéaire de la durée moyenne de la session pour un utilisateur.
- *  @returns Un composant React qui affiche un graphique linéaire de la durée moyenne de la session 
- * pour un utilisateur, sur la base des données fournies.
- */
+
 export default function AverageSessionDuration({ userId, averageSessions, aSDurationData }) {
 	const daysOfWeek = ["", "L", "M", "M", "J", "V", "S", "D"];
 	let userASDurationData;
@@ -49,7 +45,7 @@ export default function AverageSessionDuration({ userId, averageSessions, aSDura
 			<h3 className={styles.averageSessionDurationTitle}>
 				Durée moyenne des <br></br>sessions
 			</h3>
-			<ResponsiveContainer width="100%" height="100%"> {/* Rend le graphique adaptable à la taille de son conteneur parent */}
+			<ResponsiveContainer width="100%" height="100%"> 
 				<LineChart                                    // Création le graphique linéaire 
 					data={mappedSessions}
 					strokeWidth={0}                           // Définit la largeur du trait du graphique
@@ -60,8 +56,8 @@ export default function AverageSessionDuration({ userId, averageSessions, aSDura
 						bottom: 10,
 					}}
 				>
-					<defs>                                                               {/* SVG. Elles définissent un dégradé linéaire  */}
-						<linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">        {/* le tracé de la ligne */}
+					<defs>                                                              
+						<linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">        
 							<stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.4} />
 							<stop offset="25%" stopColor="#FFFFFF" stopOpacity={0.525} />
 							<stop offset="50%" stopColor="#FFFFFF" stopOpacity={0.65} />

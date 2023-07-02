@@ -11,7 +11,7 @@ import Performance from "../models/Performance";
 import AverageSessions from "../models/AverageSessions";
 import Activity from "../models/Activity";
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_PERFORMANCE, USER_AVERAGE_SESSIONS } from "../data/mock";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 export default function Home() {
 	const router = useRouter();                                      // J'initialise le routeur Next.js qui me permet de naviguer entre différentes pages.

@@ -20,7 +20,7 @@ export default function Score({ user }) {
 
 	return (
 		<div className={styles.score}>
-			<ResponsiveContainer width="100%" height="100%">         {/* c'est un composant de Recharts qui redimensionne automatiquement le graphique */}
+			<ResponsiveContainer width="100%" height="100%">        
 				<RadialBarChart cx="50%" cy="50%" innerRadius="80%" outerRadius="90%" barSize={10} data={data} startAngle={90} endAngle={-270} fill="blue">
 					<PolarAngleAxis              // C'est le composant qui construit l'axe du graphique.
 						type="number"
@@ -29,7 +29,7 @@ export default function Score({ user }) {
 						tick={false}             // tick contrôle l'affichage des marques sur l'axe
 						reversed                 // Pour inverser le sens du diagramme
 					/>
-					<RadialBar minAngle={15} clockWise dataKey="value" background={{ fill: "#FBFBFB" }} cornerRadius={50}>   {/* composant qui construit la barre radiale du graphique */}
+					<RadialBar minAngle={15} clockWise dataKey="value" background={{ fill: "#FBFBFB" }} cornerRadius={50}>   
 						{data.map((entry, index) => (
 							<Cell key={`cell-${index}`} fill={entry.fill} />                                 // Chaque Cell représente une barre dans le graphique.
 						))}
