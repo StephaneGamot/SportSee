@@ -27,10 +27,10 @@ const UserPage = ({ user, activity, averageSessions, performance }) => {
 		return <div>Loading...</div>;                                     // Si ce n'est pas le cas, il affiche "Loading...".
 	}
 
-	let userInstance = new User(user);                               // Création des instances du modèle User à partir des données user passées en props.
-	let activityInstance = new Activity(activity);                   // Création des instances du modèle Activity à partir des données activity passées en props.
-	let aSDurationInstance = new AverageSessions(averageSessions);   // Création des instances du modèle AverageSessions à partir des données averageSessions passées en props.
-	let performanceInstance = new Performance(performance);          // Création des instances du modèle Performance à partir des données performance passées en props.
+	const userInstance = new User(user);                               // Création des instances du modèle User à partir des données user passées en props.
+	const activityInstance = new Activity(activity);                   // Création des instances du modèle Activity à partir des données activity passées en props.
+	const aSDurationInstance = new AverageSessions(averageSessions);   // Création des instances du modèle AverageSessions à partir des données averageSessions passées en props.
+	const performanceInstance = new Performance(performance);          // Création des instances du modèle Performance à partir des données performance passées en props.
 
 	return (
 		<div className={styles.main}>
